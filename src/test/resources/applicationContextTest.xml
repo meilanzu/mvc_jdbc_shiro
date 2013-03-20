@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	      http://www.springframework.org/schema/jdbc
+	      http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+		
+		
+	<context:property-placeholder location="classpath*:application.properties"/>
+		
+	<context:component-scan base-package="formo" />
+	<context:annotation-config/>
+	
+	<jdbc:embedded-database id="dataSource" type="HSQL" >
+    	<jdbc:script location="classpath:app.sql"/>
+	</jdbc:embedded-database>
+	
+	<bean id="typeDao" class="formo.dao.impl.TypeDaoImpl">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="typeService" class="formo.service.impl.TypeServiceImpl">
+		<constructor-arg ref="typeDao"/>
+	</bean>
+	
+</beans>
