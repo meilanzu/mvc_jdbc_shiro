@@ -1,2 +1,2 @@
-#Simple Spring JDBC Example
+#Spring JDBC + WebMVC example
 

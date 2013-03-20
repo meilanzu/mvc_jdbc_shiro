@@ -13,8 +13,8 @@ import formo.domain.Type;
 
 public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 	
-	@Value("${find.sql}")
-	private String findSql;
+	@Value("${find.by.id.sql}")
+	private String findById;
 	
 	@Value("${find.all.sql}")
 	private String findAllSql;
@@ -23,7 +23,7 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 	private String searchSql;
 	
 	@Value("${save.sql}")
-	private String save;
+	private String saveSql;
 
 	@Value("${count.sql}")
 	private String countSql;
@@ -36,10 +36,10 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 	
 	private static final String TERM = "{{TERM}}";
 
-	public Type find(int id) {
+	public Type findById(int id) {
 		try{
 			
-			Type type = (Type) getJdbcTemplate().queryForObject(findSql, new Object[] { id }, 
+			Type type = (Type) getJdbcTemplate().queryForObject(findById, new Object[] { id }, 
 				new BeanPropertyRowMapper(Type.class));
 			
 			return type;
@@ -83,11 +83,11 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 
 		int id = getJdbcTemplate().queryForInt(countSql, new Object[0]);
 		
-		getJdbcTemplate().update(insertSql, new Object[] { 
-			id, type.getName(), type.getPrice(), type.getQuantity()  
+		getJdbcTemplate().update(saveSql, new Object[] { 
+			id, type.getName(), type.getAuthorId(), type.getRaw()  
 		});
 		
-		Type savedType = find(id);
+		Type savedType = findById(id);
 		
 		return savedType;
 		
@@ -97,10 +97,10 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 	public Type update(Type type){
 
 		getJdbcTemplate().update(updateSql, new Object[] { 
-			type.getName(), type.getPrice(), type.getQuantity(), type.getId()  
+			type.getName(), type.getAuthorId(), type.getRaw(), type.getId()  
 		});
 		
-		return find(type.getId());
+		return findById(type.getId());
 				
 	};
 	

@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Date; 
 import java.util.List;
 
-import formo.service.TypeService;
+import formo.dao.TypeDao;
 import formo.domain.Type;
 
 
@@ -27,7 +27,8 @@ public class TypeController{
 	private Gson gson;
 	
 	@Autowired
-	private TypeService typeService;
+	// private TypeService typeService;
+	private TypeDao typeDao;
 		
 	
 	public TypeController(){
@@ -39,7 +40,7 @@ public class TypeController{
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody String getTypes(){
 			
-		List<Type> types = typeService.getTypes();
+		List<Type> types = typeDao.findAll();
 		String typesGson = gson.toJson(types);
 		System.out.println("TypeController : " + typesGson);
 		
@@ -51,7 +52,7 @@ public class TypeController{
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public @ResponseBody String getType(@PathVariable String id){
 			
-		Type type = typeService.getType(Integer.parseInt(id));
+		Type type = typeDao.findById(Integer.parseInt(id));
 		String typeGson = gson.toJson(type);
 		
 		return typeGson;
@@ -65,9 +66,9 @@ public class TypeController{
 		System.out.println(typeJson);
 			
 		Type type = gson.fromJson(typeJson, Type.class);	
-		typeService.saveType(type);
+		typeDao.save(type);
 		
-		List<Type> types = typeService.getTypes();
+		List<Type> types = typeDao.findAll();
 		String typesGson = gson.toJson(types);
 	 
 		return typesGson;
@@ -78,15 +79,15 @@ public class TypeController{
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public @ResponseBody String updateType(@PathVariable String id,
-										      @RequestBody String typeJson){
+										   @RequestBody String typeJson){
 		
 		Type type = gson.fromJson(typeJson, Type.class);
 		type.setId(Integer.parseInt(id));
-		typeService.updateType(type);
+		typeDao.update(type);
 		
 		System.out.println("\n\n" + type + "\n\n");
 	
-		Type updatedType = typeService.getType(Integer.parseInt(id));
+		Type updatedType = typeDao.findById(Integer.parseInt(id));
 		String updatedTypeGson = gson.toJson(updatedType);
 		
 		return updatedTypeGson;
@@ -100,16 +101,17 @@ public class TypeController{
 	public @ResponseBody String deleteType(@PathVariable String id){
 			
 		System.out.println("\n\n id : " + Integer.parseInt(id) + "\n\n");
-		Type type = typeService.getType(Integer.parseInt(id));	
-		System.out.println(type);
-		typeService.deleteType(type);
+		Type type = typeDao.findById(Integer.parseInt(id));	
 		
-		List<Type> types = typeService.getTypes();
+		System.out.println(type);
+		typeDao.delete(type.getId());
+		
+		List<Type> types = typeDao.findAll();
 		String typesGson = gson.toJson(types);
 	 
 		return typesGson;
+		
 	}	
-	
 	
 	
 }

@@ -28,7 +28,7 @@ public class TestSpringJdbcDao {
 	@Autowired
 	TypeDao typeDao;
 	
-	private String[] typeNames = {"Peanut Butter", "Marmalade", "Taco", "Guacamole", "Beer"};
+	private String[] typeNames = {"//Lat", "//Lon", "//Min", "//Max", "//Error"};
 	
 	
 	@Test
@@ -42,7 +42,7 @@ public class TestSpringJdbcDao {
 	
 	@Test
 	public void testDeleteFirst(){
-		Type type = typeDao.find(0);
+		Type type = typeDao.findById(0);
 		assertEquals(type.getName(), typeNames[0]);
 		typeDao.delete(0);
 		
@@ -53,23 +53,23 @@ public class TestSpringJdbcDao {
 	
 	@Test
 	public void testSearch(){
-		List<Type> types = typeDao.search("ac");
+		List<Type> types = typeDao.search("o");
 		assertEquals(2, types.toArray().length);
 	}
 	
 	
 	@Test
 	public void testUpdateTaco(){
-		List<Type> types = typeDao.search("aco");
+		List<Type> types = typeDao.search("on");
 		assertEquals(1, types.toArray().length);
 		
-		Type tacoPre = types.get(0);
-		int id = tacoPre.getId();
-		tacoPre.setPrice(3.50);
-		typeDao.update(tacoPre);
+		Type pre = types.get(0);
+		int id = pre.getId();
+		pre.setName("//newtype");
+		typeDao.update(pre);
 		
-		Type taco = typeDao.find(id);
-		assertEquals(3.50, taco.getPrice());
+		Type type = typeDao.findById(id);
+		assertEquals("//newtype", type.getName());
 	}
 	
 	
@@ -95,8 +95,8 @@ public class TestSpringJdbcDao {
 			Type type = new Type();
 			type.setId(f);
 			type.setName(typeNames[f]);
-			type.setQuantity(random.nextInt());
-			type.setPrice(random.nextDouble());
+			type.setAuthorId(random.nextInt());
+			type.setRaw("{ name : \" " + typeNames[f] + "\"}");
 			typeDao.save(type);
 		}
 	}

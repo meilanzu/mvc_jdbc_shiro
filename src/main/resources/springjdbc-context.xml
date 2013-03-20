@@ -22,9 +22,5 @@
 	<bean id="typeDao" class="formo.dao.impl.TypeDaoImpl">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-
-	<bean id="typeService" class="formo.service.impl.TypeServiceImpl">
-		<constructor-arg ref="typeDao"/>
-	</bean>
 	
 </beans>
