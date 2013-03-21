@@ -144,7 +144,7 @@
                 <configuration>
                     <scanIntervalSeconds>5</scanIntervalSeconds>
                     <webAppConfig>
-                        <contextPath>/springjdbc</contextPath>
+                        <contextPath>/app</contextPath>
                     </webAppConfig>
 					<contextHandlers>
 						<contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
