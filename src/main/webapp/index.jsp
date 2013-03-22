@@ -1,27 +1,17 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="z" tagdir="/WEB-INF/tags" %>
+
 <html>
-<head>
-
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-
-<link href="../web-common/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
-
-<style type="text/css">
-	.icon-remove{
-		cursor : pointer !important;
-		cursor : hand !important;
-	}
-</style>
+<z:header/>
 
 <body>
 
 <div class="container">
 
 	<div class="row">
-		
-		<div class="span12">		
-			<h3>Spring JDBC + Web MVC</h3>
+		<div class="span12">
+			<%@include file="jsp/includes/navigation.jsp" %>
 		</div>
-		
 	</div>
 	
 	<div class="row">

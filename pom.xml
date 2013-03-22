@@ -147,10 +147,12 @@
                         <contextPath>/app</contextPath>
                     </webAppConfig>
 					<contextHandlers>
+						<!--
 						<contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
 							<war>${project.build.directory}/../src/main/webapp/WEB-INF/lib/jms-web-common-0.0.1-SNAPSHOT.war</war>
 							<contextPath>/web-common</contextPath>
 						</contextHandler>
+						-->
 					</contextHandlers>
 			        <connectors>
 			            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">

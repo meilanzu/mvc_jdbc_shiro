@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.gson.Gson;
 import java.util.Map;
 import java.util.Date; 
@@ -47,6 +49,19 @@ public class TypeController{
 		return typesGson;
 	}
 
+
+	@RequestMapping(value="/create", method=RequestMethod.GET)
+	public String getTypes(HttpServletRequest request){
+		request.setAttribute("title", "Create New Property");
+		return "property/create";
+	}
+
+
+	@RequestMapping(value="/browse", method=RequestMethod.GET)
+	public String browse(HttpServletRequest request){
+		request.setAttribute("title", "Browse Properties");
+		return "property/browse";
+	}	
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
