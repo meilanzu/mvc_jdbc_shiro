@@ -14,9 +14,9 @@
            			<li class="active"><a href="#">Home</a></li>
            			<li><a href="/app/api/type/browse">Browse Properties</a></li>
            			<li><a href="/app/api/type/create">Add Property</a></li>
-           			<li><a href="javascript:">Tags</a></li>
-           			<li><a href="javascript:">Sites</a></li>
-           			<li><a href="javascript:">Support</a></li>
+           			<li><a href="/app/api/tag/list">Tags</a></li>
+           			<li><a href="/app/api/site/list">Sites</a></li>
+           			<li><a href="/app/api/support">Support</a></li>
          		</ul>
        		</div>
     	</div>

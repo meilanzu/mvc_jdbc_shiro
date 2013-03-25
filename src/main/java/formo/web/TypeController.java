@@ -51,10 +51,11 @@ public class TypeController{
 
 
 	@RequestMapping(value="/create", method=RequestMethod.GET)
-	public String getTypes(HttpServletRequest request){
+	public String create(HttpServletRequest request){
 		request.setAttribute("title", "Create New Property");
 		return "property/create";
 	}
+
 
 
 	@RequestMapping(value="/browse", method=RequestMethod.GET)
