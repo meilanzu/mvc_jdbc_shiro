@@ -115,6 +115,11 @@
             <version>1.6.1</version>
         </dependency>
 
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 	
 	</dependencies>
 	
@@ -190,7 +195,7 @@
 			    </executions>
 			    <configuration>
 			        <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
-			        <dname>cn=localhost:8080/springjdbc</dname>
+			        <dname>cn=localhost:8080/formo</dname>
 			        <keypass>jetty6</keypass>
 			        <storepass>jetty6</storepass>
 			        <alias>jetty6</alias>

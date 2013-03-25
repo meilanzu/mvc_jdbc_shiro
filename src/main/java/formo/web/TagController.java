@@ -52,6 +52,7 @@ public class TagController{
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(HttpServletRequest request){
 		request.setAttribute("title", "List Tags");
+		request.setAttribute("tagsActive", "active");
 		return "tag/list";
 	}
 

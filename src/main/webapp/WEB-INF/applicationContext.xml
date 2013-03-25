@@ -14,7 +14,7 @@
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://${db.host}:5432/springjdbc"/>
+		<property name="url" value="jdbc:postgresql://${db.host}:5432/formo"/>
 		<property name="username" value="${db.username}"/>
 		<property name="password" value="${db.password}"/>
 	</bean>

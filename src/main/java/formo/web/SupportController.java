@@ -37,6 +37,7 @@ public class SupportController{
 	public String index(HttpServletRequest request){
 			
 		request.setAttribute("title", "Support");
+		request.setAttribute("supportActive", "active");
 		return "support/index";
 	}
 

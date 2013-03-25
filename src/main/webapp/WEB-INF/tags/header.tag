@@ -7,4 +7,5 @@
 		cursor : hand !important;
 	}
 </style>
+<script type="text/javascript" src="/app/js/jquery.js"></script>
 </head>

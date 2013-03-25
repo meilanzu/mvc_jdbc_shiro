@@ -53,6 +53,7 @@ public class TypeController{
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String create(HttpServletRequest request){
 		request.setAttribute("title", "Create New Property");
+		request.setAttribute("addPropertyActive", "active");
 		return "property/create";
 	}
 
@@ -61,8 +62,52 @@ public class TypeController{
 	@RequestMapping(value="/browse", method=RequestMethod.GET)
 	public String browse(HttpServletRequest request){
 		request.setAttribute("title", "Browse Properties");
+		request.setAttribute("browsePropertyActive", "active");
 		return "property/browse";
 	}	
+	
+
+	@RequestMapping(value="/show/{id}", method=RequestMethod.GET)
+	public String show(HttpServletRequest request, @PathVariable String id){
+		request.setAttribute("title", "Show Property : " + id);
+		request.setAttribute("browsePropertyActive", "active");
+		
+		Type type = typeDao.findById(Integer.parseInt(id));
+		request.setAttribute("id", type.getId());
+		request.setAttribute("name", type.getName());
+		request.setAttribute("authorId", type.getAuthorId());
+		request.setAttribute("raw", type.getRaw());
+		return "property/show";
+	}	
+
+
+
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public String list(HttpServletRequest request, 
+					   @RequestParam(value="offset", required = false ) String offset,
+					   @RequestParam(value="max", required = false ) String max){
+						
+		request.setAttribute("title", "List Properties");
+		request.setAttribute("browsePropertyActive", "active");
+		
+		List<Type> types;
+		
+		if(offset != null && max != null) {
+			int m = Integer.parseInt(max);
+			int o = Integer.parseInt(offset);
+			types = typeDao.findAllOffset(o, m);	
+		}else{
+			types = typeDao.findAll();	
+		} 
+		
+		int count = typeDao.count();
+		
+		request.setAttribute("types", types);
+		request.setAttribute("total", count);
+		
+		return "property/list";
+	}
+	
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
@@ -78,16 +123,15 @@ public class TypeController{
 
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public @ResponseBody String saveType(@RequestBody String typeJson){
-		
+		System.out.println("SAVE TYPE");
 		System.out.println(typeJson);
 			
 		Type type = gson.fromJson(typeJson, Type.class);	
-		typeDao.save(type);
+		Type savedType = typeDao.save(type);
 		
-		List<Type> types = typeDao.findAll();
-		String typesGson = gson.toJson(types);
+		String savedTypeGson = gson.toJson(savedType);
 	 
-		return typesGson;
+		return savedTypeGson;
 	}
 	
 	

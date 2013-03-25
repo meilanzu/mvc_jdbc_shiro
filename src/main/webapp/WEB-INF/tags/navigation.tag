@@ -11,12 +11,12 @@
        		<a class="brand" href="javascript:">Formo</a>
        		<div class="nav-collapse collapse navbar-inverse-collapse pull-right">
          		<ul class="nav">
-           			<li class="active"><a href="#">Home</a></li>
-           			<li><a href="/app/api/type/browse">Browse Properties</a></li>
-           			<li><a href="/app/api/type/create">Add Property</a></li>
-           			<li><a href="/app/api/tag/list">Tags</a></li>
-           			<li><a href="/app/api/site/list">Sites</a></li>
-           			<li><a href="/app/api/support">Support</a></li>
+           			<li class="${homeActive}"><a href="javascript:">Home</a></li>
+           			<li class="${browsePropertyActive}"><a href="/app/api/type/list">Browse Properties</a></li>
+           			<li class="${addPropertyActive}"><a href="/app/api/type/create">Add Property</a></li>
+           			<li class="${tagsActive}"><a href="/app/api/tag/list">Tags</a></li>
+           			<li class="${sitesActive}"><a href="/app/api/site/list">Sites</a></li>
+           			<li class="${supportActive}"><a href="/app/api/support">Support</a></li>
          		</ul>
        		</div>
     	</div>

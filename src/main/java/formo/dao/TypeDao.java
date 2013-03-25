@@ -10,6 +10,8 @@ public interface TypeDao{
 	
 	public List<Type> findAll();
 	
+	public List<Type> findAllOffset(int max, int offset);
+	
 	public List<Type> search(String term);
 	
 	public Type save(Type type);
@@ -17,5 +19,7 @@ public interface TypeDao{
 	public Type update(Type type);
 	
 	public void delete(int id);
+	
+	public int count();
 	
 }
