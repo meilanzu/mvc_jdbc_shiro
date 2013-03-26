@@ -1,56 +1,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="z" tagdir="/WEB-INF/tags" %>
-
 <html>
-<z:header/>
 
 <body>
 
 <div class="container">
 
 	<div class="row">
-		<div class="span12">
-			<%@include file="jsp/includes/navigation.jsp" %>
-		</div>
-	</div>
-	
-	<div class="row">
 		
 		<div class="span6" >
-			<h4>Inventory</h4>
-			<table class="table table-condensed table-bordered">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>name</th>
-						<th>quantity</th>
-						<th>price</th>		
-						<th></th>			
-					</tr>
-				</thead>
-				<tbody id="list"></tbody>
-			</table>
+			<h1>Welcome</h1>
 		</div>
 		
 		<div class="span1"></div>
 		
 		<div class="span5" id="create">
-			<h4>Add Type</h4>
-			<div class="well">
-				<p>
-					<label>Type Name</label>
-					<input type="text" value="" id="name"/>
-				</p>	
-				<p>
-					<label>Quantity</label>
-					<input type="text" value="" id="quantity"/>
-				</p>			
-				<p>
-					<label>Price</label>
-					<input type="text" value="" id="price"/>
-				</p>			
-	    		<button id="newtype" class="addtype">Add Type</button>
-			</div>
+
 		</div>
 		
 	</div>

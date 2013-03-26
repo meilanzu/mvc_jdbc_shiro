@@ -1,7 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<html>
 
-<z:main>
+<head>
+	<title>${title}</title>
+</head>
+
+<body>
 	<div class="row">
 		<div class="span12">
 			<h1>${title}</h1>
@@ -27,4 +31,5 @@
 			</p>			
 		</div>
 	</div>
-</z:main>
+</body>
+</html>

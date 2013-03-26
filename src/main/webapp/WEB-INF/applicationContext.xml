@@ -7,10 +7,11 @@
           http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<context:component-scan base-package="formo" />
 	<context:annotation-config/>
-	
 	<context:property-placeholder location="classpath*:application.properties"/>
+	
+	<context:component-scan base-package="formo" />
+	
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />

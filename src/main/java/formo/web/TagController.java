@@ -75,7 +75,6 @@ public class TagController{
 	
 	
 	
-	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public @ResponseBody String updateTag(@PathVariable String id,
 										   @RequestBody String tagJson){
@@ -92,7 +91,6 @@ public class TagController{
 	public @ResponseBody String deleteTags(@PathVariable String id){
 		
 		return "{}";
-		
 	}	
 	
 	

@@ -75,7 +75,7 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 		try{
 			
 			String sql = findAllSql;
-			sql+= paginate;
+			sql+= " " + paginate;
 			sql = sql.replace(MAX, Integer.toString(max));
 			sql = sql.replace(OFFSET, Integer.toString(offset));
 			

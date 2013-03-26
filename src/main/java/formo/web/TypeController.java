@@ -2,6 +2,7 @@ package formo.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +32,8 @@ public class TypeController{
 	@Autowired
 	// private TypeService typeService;
 	private TypeDao typeDao;
-		
+	
+	private static final int RESULTS_PER_PAGE = 7;
 	
 	public TypeController(){
 		System.out.println("\n\nInitializing TypeController\n\n");
@@ -63,6 +65,7 @@ public class TypeController{
 	public String browse(HttpServletRequest request){
 		request.setAttribute("title", "Browse Properties");
 		request.setAttribute("browsePropertyActive", "active");
+		request.setAttribute("resultsPerPage", RESULTS_PER_PAGE);
 		return "property/browse";
 	}	
 	
@@ -85,17 +88,27 @@ public class TypeController{
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(HttpServletRequest request, 
 					   @RequestParam(value="offset", required = false ) String offset,
-					   @RequestParam(value="max", required = false ) String max){
+					   @RequestParam(value="max", required = false ) String max,
+					   @RequestParam(value="page", required = false ) String page){
 						
 		request.setAttribute("title", "List Properties");
 		request.setAttribute("browsePropertyActive", "active");
+		request.setAttribute("resultsPerPage", RESULTS_PER_PAGE);
+		if(page == null){
+			System.out.println("PAGE EQUALS NULL");
+			page = "1";
+		}
+		request.setAttribute("activePage", page);
 		
 		List<Type> types;
 		
-		if(offset != null && max != null) {
-			int m = Integer.parseInt(max);
+		if(offset != null) {
+			int m = RESULTS_PER_PAGE;
+			if(max != null){
+				m = Integer.parseInt(max);
+			}
 			int o = Integer.parseInt(offset);
-			types = typeDao.findAllOffset(o, m);	
+			types = typeDao.findAllOffset(m, o);	
 		}else{
 			types = typeDao.findAll();	
 		} 
