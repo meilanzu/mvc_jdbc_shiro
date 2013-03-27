@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
+
 import java.util.Map;
+import java.util.HashMap;
 import java.util.Date; 
 import java.util.List;
 
@@ -42,13 +46,36 @@ public class TypeController{
 	
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public @ResponseBody String getTypes(){
+	public @ResponseBody String getTypes(@RequestParam(value="offset", required = false ) String offset,
+						   				 @RequestParam(value="max", required = false ) String max){
 			
-		List<Type> types = typeDao.findAll();
-		String typesGson = gson.toJson(types);
-		System.out.println("TypeController : " + typesGson);
+		List<Type> types;		
+		if(offset != null) {
+			int m = RESULTS_PER_PAGE;
+			if(max != null){
+				m = Integer.parseInt(max);
+			}
+			int o = Integer.parseInt(offset);
+			types = typeDao.findAllOffset(m, o);	
+		}else{
+			types = typeDao.findAll();	
+		} 
 		
-		return typesGson;
+		int count = typeDao.count();
+		
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		responseMap.put("count", count);
+		responseMap.put("types", types);
+		
+		JsonElement jsonTree = gson.toJsonTree(responseMap, Map.class);
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.add("results", jsonTree);
+		
+		// String gson = gson.toJson(responseMap);
+		
+		System.out.println("TypeController : " + jsonObject.toString());
+		
+		return jsonObject.toString();
 	}
 
 
@@ -68,6 +95,7 @@ public class TypeController{
 		request.setAttribute("resultsPerPage", RESULTS_PER_PAGE);
 		return "property/browse";
 	}	
+	
 	
 
 	@RequestMapping(value="/show/{id}", method=RequestMethod.GET)
@@ -92,7 +120,7 @@ public class TypeController{
 					   @RequestParam(value="page", required = false ) String page){
 						
 		request.setAttribute("title", "List Properties");
-		request.setAttribute("browsePropertyActive", "active");
+		request.setAttribute("listPropertyActive", "active");
 		request.setAttribute("resultsPerPage", RESULTS_PER_PAGE);
 		if(page == null){
 			System.out.println("PAGE EQUALS NULL");

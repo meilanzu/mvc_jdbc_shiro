@@ -1,13 +1,11 @@
 package formo.domain;
 
-
 public class Type{
 	
 	private int id;
 	private String name;
 	private int authorId;
 	private String raw;
-	
 	
 	public int getId(){
 		return this.id;

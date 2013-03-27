@@ -17,61 +17,94 @@
 	<div class="row">
 		<div class="span12">
 			<h1>${title}</h1>
-			<h4>Count : ${total}</h4>
-			<h4>Results : ${resultsPerPage}</h4>
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="span12">
-					
 
-			<% 
-				System.out.println("here...");
-			%>
-			<c:if test="${TotalPages < total}">
-			    <span>This condition is not true. This text should not be displayed.</span>
-			</c:if>
-			
-			<fmt:parseNumber var="total" value="${total}" />
-			
-			<div class="btn-toolbar">
-				<div class="btn-group">
-					<fmt:parseNumber var="resultsPerPage" value="${resultsPerPage}" />
-					<fmt:parseNumber var="currentPage" value="1" />
-					
-					<c:forEach var="property" items="${types}" varStatus="c">
-						<c:if test="${c.index % resultsPerPage == 0}">
-							<a href="/app/api/type/list?offset=${c.index}&max=${resultsPerPage}" class="btn">${currentPage}</a>
-							<fmt:parseNumber var="currentPage" value="${currentPage + 1}" />
-						</c:if>
-					</c:forEach>
-				</div>
-			</div>
-			
-				
-			<table class="table table-condensed table-bordered">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Author Id</th>
-						<th>Raw</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="property" items="${types}">
-						<tr>
-							<td>${property.id}</td>
-							<td>${property.name}</td>
-							<td>${property.authorId}</td>
-							<td>${property.raw}</td>
-						</tr>									
-					</c:forEach>
-				</tbody>
-			</table>
+			<div id="tree"></div>
 			
 		</div>
 	</div>
+	
+	
+	<script type="text/template" id="template">
+	
+	
+	</script>
+	
+	
+	
+	<script type="text/javascript">
+	
+		var FIRST_PAGE = 1;
+		var $tree = $("#tree");
+		
+		var data =[
+		              {
+		                  "data" : "weekly",
+		                  "attr":{"rel":"directory"},
+		                  "children" : [ {"data":"w-file1","attr":{"rel":"file"}}, {"data":"w-file2","attr":{"rel":"disabled"}} ]
+		              },
+		              {
+		                  "data" : "daily",
+		                  "attr":{"rel":"directory"},
+		                  "children" : [ {"data":"d-file1","attr":{"rel":"file"}}, {"data":"d-file2","attr":{"rel":"file"}} ]
+		              }
+		          ];
+		
+		
+		$(document).ready(function(){
+			TypesTransport.get(7, 0)
+				.done(renderTypes(FIRST_PAGE))
+				.error(error)
+				
+				console.log($tree, data);
+				
+				$("#tree").jstree({
+				    plugins: ['themes', 'json_data', 'checkbox',"types"],
+					json_data: {data: data},
+				    themes: {
+				        theme: 'default'
+				    },
+				    checkbox: {
+				        real_checkboxes: true,
+				            two_state: true
+				    },
+				    "types":{
+				            "types":{
+				                  "disabled" : {
+				                       "check_node" : false,
+				                      "uncheck_node" : false
+				                    } ,
+				                                  "directory" : {
+				                       "check_node" : false,
+				                      "uncheck_node" : false
+				                    } 
+				            } 
+				    }    
+
+				});
+		});
+		
+		
+		function renderTypes(currentPage){
+			return function(data){
+				console.info(typeof data);
+				if(typeof data == 'string')data = $.parseJSON(data);
+				console.log(typeof data);
+			}
+		}
+		
+		
+		function error(){
+			console.warn('error')
+		}
+		
+		
+		
+	</script>
+	
 </body>
 </html>

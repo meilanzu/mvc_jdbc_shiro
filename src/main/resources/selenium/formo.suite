@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="addtype">addtype</a></td></tr>
+<tr><td><a href="addType2">addType2</a></td></tr>
+<tr><td><a href="addType3">addType3</a></td></tr>
+<tr><td><a href="addType4">addType4</a></td></tr>
+<tr><td><a href="addType5">addType5</a></td></tr>
+<tr><td><a href="addType6">addType6</a></td></tr>
+<tr><td><a href="addType7">addType7</a></td></tr>
+<tr><td><a href="addType8">addType8</a></td></tr>
+<tr><td><a href="addType9">addType9</a></td></tr>
+<tr><td><a href="addType10">addType10</a></td></tr>
+<tr><td><a href="addType11">addType11</a></td></tr>
+<tr><td><a href="addType12">addType12</a></td></tr>
+<tr><td><a href="addType13">addType13</a></td></tr>
+<tr><td><a href="addType14">addType14</a></td></tr>
+<tr><td><a href="addType15">addType15</a></td></tr>
+<tr><td><a href="addType16">addType16</a></td></tr>
+<tr><td><a href="addType17">addType17</a></td></tr>
+<tr><td><a href="addType18">addType18</a></td></tr>
+<tr><td><a href="addType19">addType19</a></td></tr>
+<tr><td><a href="addType20">addType20</a></td></tr>
+</tbody></table>
+</body>
+</html>

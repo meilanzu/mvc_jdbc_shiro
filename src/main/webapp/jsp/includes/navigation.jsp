@@ -10,7 +10,8 @@
        		<div class="nav-collapse collapse navbar-inverse-collapse pull-right">
          		<ul class="nav">
            			<li class="${homeActive}"><a href="/app/">Home</a></li>
-           			<li class="${browsePropertyActive}"><a href="/app/api/type/list">Browse Properties</a></li>
+           			<li class="${listPropertyActive}"><a href="/app/api/type/list?offset=0&max=7">List Properties</a></li>
+           			<li class="${browsePropertyActive}"><a href="/app/api/type/browse">Browse Properties</a></li>
            			<li class="${addPropertyActive}"><a href="/app/api/type/create">Add Property</a></li>
            			<li class="${tagsActive}"><a href="/app/api/tag/list">Tags</a></li>
            			<li class="${sitesActive}"><a href="/app/api/site/list">Sites</a></li>

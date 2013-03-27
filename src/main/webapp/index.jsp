@@ -22,19 +22,6 @@
 </div>
 
 
-<script type="text/javascript" src="../web-common/js/jquery.js"></script>
-<script type="text/javascript" src="../web-common/js/mustache.js"></script>
-
-<script type="text/mustache" id="template">
-	<tr data-id="{{id}}">
-		<td>{{id}}</td>
-		<td contenteditable="true" class="name editable" id="name{{id}}">{{name}}</td>
-		<td contenteditable="true" class="quantity editable" id="quantity{{id}}">{{quantity}}</td>
-		<td contenteditable="true" class="price editable" id="price{{id}}">{{price}}</td>
-		<td><span class="icon icon-remove" data-id="{{id}}"></span></td>
-	</tr>
-</script>
-
 
 
 <script type="text/javascript">
