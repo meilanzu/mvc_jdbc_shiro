@@ -1,4 +1,4 @@
-package formo.web;
+spackage formo.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
