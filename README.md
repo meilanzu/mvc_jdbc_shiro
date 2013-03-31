@@ -10,6 +10,8 @@ http://zousu.com/wp/selenium-webdriver-with-maven/
 
 http://stackoverflow.com/questions/5784329/how-can-i-make-jenkins-ci-with-git-trigger-on-pushes-to-master
 
+http://blog.cloudbees.com/2012/03/using-git-with-jenkins.html
+
 <c:if test="${c.index % resultsPerPage == 0}">
 	<a href="/app/api/type/list?offset=${c.index}&max=${resultsPerPage}" class="btn">${currentPage}</a>
 	<fmt:parseNumber var="currentPage" value="${currentPage + 1}" />
