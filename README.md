@@ -14,6 +14,8 @@ http://blog.cloudbees.com/2012/03/using-git-with-jenkins.html
 
 http://blog.cloudbees.com/2012/01/better-integration-between-jenkins-and.html
 
+http://stackoverflow.com/questions/7743749/shiro-authorization-permission-check-using-annotation-not-working
+
 <c:if test="${c.index % resultsPerPage == 0}">
 	<a href="/app/api/type/list?offset=${c.index}&max=${resultsPerPage}" class="btn">${currentPage}</a>
 	<fmt:parseNumber var="currentPage" value="${currentPage + 1}" />

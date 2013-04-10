@@ -1,4 +1,4 @@
-spackage formo.web;
+package formo.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
@@ -22,14 +23,18 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Date; 
 import java.util.List;
+import java.util.ArrayList;
 
 import formo.dao.TypeDao;
 import formo.domain.Type;
 
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.AuthorizationException;
 
 @Controller
 @RequestMapping("/type")
-public class TypeController{
+public class TypeController {
 	
 	private Gson gson;
 	
@@ -81,6 +86,13 @@ public class TypeController{
 
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String create(HttpServletRequest request){
+		List<String> roles = new ArrayList<String>();
+		roles.add("admin");
+		
+		if (!SecurityUtils.getSubject().hasRole("admin")){
+	    	System.out.println("\n\nOperation not permitted");
+	      	throw new AuthorizationException("No Permission"); 
+	    }	
 		request.setAttribute("title", "Create New Property");
 		request.setAttribute("addPropertyActive", "active");
 		return "property/create";
@@ -196,7 +208,6 @@ public class TypeController{
 
 	
 		
-	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public @ResponseBody String deleteType(@PathVariable String id){
