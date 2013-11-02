@@ -67,7 +67,7 @@
 							<td>${property.id}</td>
 							<td>${property.name}</td>
 							<td>${property.authorId}</td>
-							<td>${property.raw}</td>
+							<td>${property.oraw}</td>
 						</tr>									
 					</c:forEach>
 				</tbody>

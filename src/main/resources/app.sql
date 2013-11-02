@@ -1,9 +1,8 @@
-
-create table type (
-	id integer NOT NULL UNIQUE,
-	name varchar(100) NOT NULL,
-	authorId integer NOT NULL,
-	raw varchar(4000) NOT NULL
+--oracle
+CREATE TABLE SHIRO_TYPE (
+	ID        NUMBER(10) NOT NULL,
+	NAME      VARCHAR2(100) NOT NULL,
+	AUTHORID  NUMBER(10) NOT NULL,
+	ORAW      VARCHAR2(4000) NOT NULL ,
+	PRIMARY KEY (ID)
 );
-
-alter table type add primary key (id);

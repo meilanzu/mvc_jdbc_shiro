@@ -27,7 +27,7 @@
 			</p>
 			<p>
 				<label>Raw : </label>
-				<h5>${raw}</h5>
+				<h5>${oraw}</h5>
 			</p>			
 		</div>
 	</div>

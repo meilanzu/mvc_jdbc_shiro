@@ -38,7 +38,7 @@
 				<div class="control-group">
 					<label class="control-label">Raw</label>
 					<div class="controls">
-						<input type="text" name="raw" value="" placeholder="ex: { name : test}" id="raw"/>	
+						<input type="text" name="oraw" value="" placeholder="ex: { name : test}" id="oraw"/>
 					</div>
 				</div>
 			</form>	

@@ -1,24 +1,17 @@
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.jdbc.datasource.embedded.*;
-import static junit.framework.Assert.*;
-import org.junit.runner.RunWith;
-import junit.framework.*;
-
-import org.junit.Test; 
-
-import formo.dao.impl.TypeDaoImpl;
 import formo.dao.TypeDao;
 import formo.domain.Type;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Random;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -96,7 +89,7 @@ public class TestSpringJdbcDao {
 			type.setId(f);
 			type.setName(typeNames[f]);
 			type.setAuthorId(random.nextInt());
-			type.setRaw("{ name : \" " + typeNames[f] + "\"}");
+			type.setOraw("{ name : \" " + typeNames[f] + "\"}");
 			typeDao.save(type);
 		}
 	}

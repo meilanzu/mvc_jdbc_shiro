@@ -1,14 +1,12 @@
 package formo.dao.impl;
 
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.beans.factory.annotation.Value;  
-
-import java.util.List;
-import java.util.ArrayList;
-
 import formo.dao.TypeDao;
 import formo.domain.Type;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+import java.util.List;
 
 
 public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
@@ -19,8 +17,8 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 	@Value("${find.all.sql}")
 	private String findAllSql;
 	
-	@Value("${find.paginate}")
-	private String paginate;
+//	@Value("${find.paginate}")
+//	private String paginate;
 	
 	@Value("${search.sql}")
 	private String searchSql;
@@ -75,9 +73,10 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 		try{
 			
 			String sql = findAllSql;
-			sql+= " " + paginate;
-			sql = sql.replace(MAX, Integer.toString(max));
-			sql = sql.replace(OFFSET, Integer.toString(offset));
+            //FIXME limit
+//			sql+= " " + paginate;
+//			sql = sql.replace(MAX, Integer.toString(max));
+//			sql = sql.replace(OFFSET, Integer.toString(offset));
 			
 			
 			System.out.println("find all " + sql);
@@ -114,10 +113,10 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 		System.out.println("save type " + countSql + "  " + id);
 		System.out.println("type name" + type.getName());
 		System.out.println("type authorId" + type.getAuthorId());
-		System.out.println("type raw" + type.getRaw());
+		System.out.println("type raw" + type.getOraw());
 		
 		getJdbcTemplate().update(saveSql, new Object[] { 
-			id, type.getName(), type.getAuthorId(), type.getRaw()  
+			id, type.getName(), type.getAuthorId(), type.getOraw()
 		});
 		
 		Type savedType = findById(id);
@@ -138,7 +137,7 @@ public class TypeDaoImpl extends JdbcDaoSupport implements TypeDao{
 	public Type update(Type type){
 
 		getJdbcTemplate().update(updateSql, new Object[] { 
-			type.getName(), type.getAuthorId(), type.getRaw(), type.getId()  
+			type.getName(), type.getAuthorId(), type.getOraw(), type.getId()
 		});
 		
 		return findById(type.getId());
